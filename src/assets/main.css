@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.backButton {
+    background-color: #acc2c0;
+    font-weight: bold;
+}
+
+.plusButton {
+    background-color: #55efc4;
+    font-weight: bold;
+}  
