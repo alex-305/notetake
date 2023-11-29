@@ -6,14 +6,17 @@ body {
 
 button {
     cursor: pointer;
+    font-weight: bold;
 }
 
 .backButton {
-    background-color: #acc2c0;
-    font-weight: bold;
+    background-color: #b0ffe9;
 }
 
 .plusButton {
     background-color: #55efc4;
-    font-weight: bold;
-}  
+}
+
+.xButton {
+    background-color:  #ff7675;
+}
