@@ -1,12 +1,17 @@
 <template>
 <div>
-  <button @click="$router.push('create')" class="plusButton">New note</button>
+  <h1>Notes
+    <button @click="$router.push('create')" class="plusButton">＋NEW</button>
+  </h1>
+</div>
+<div>
+
+  
 </div>
 
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 
 </script>
 

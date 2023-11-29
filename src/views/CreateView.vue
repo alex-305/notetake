@@ -7,7 +7,7 @@
         <NotePad/>
     </div>
     <div>
-        <button class="plusButton">Create Note➤</button>
+        <button class="saveButton">Save🖫</button>
     </div>
     
     </template>
@@ -17,6 +17,7 @@
     import NotePad from '../components/NotePad.vue'
     
     const noteName = ref('');
+    const noteContent = ref('');
     
     const sendNoteToServer = () => {
         
