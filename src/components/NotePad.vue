@@ -18,17 +18,25 @@
     }
 
     const selectLine = (textArea: HTMLTextAreaElement) => {
-        const beginning = textArea.selectionStart;
+        let beginning = textArea.selectionStart;
         const text = textArea.value
         const end = textArea.selectionEnd;
-        
+        let lineEnd = null;
         const lineBeginning = text.lastIndexOf('\n',beginning-1) + 1;
-        let lineEnd = text.indexOf('\n', beginning);
+
+
+        if(beginning !== end) {
+            lineEnd = text.indexOf('\n', end+1);
+        } else if(beginning == end && text[beginning] === '\n') {
+            lineEnd = beginning +1;
+        } else {
+            lineEnd = text.indexOf('\n', beginning-1) + 1;
+        }
+
+        
+        
         if(lineEnd === -1) {
             lineEnd = text.length;
-        }
-        if(lineBeginning !== lineEnd) {
-            lineEnd = text.indexOf('\n', end+1);
         }
         textArea.setSelectionRange(lineBeginning,lineEnd);
     }
