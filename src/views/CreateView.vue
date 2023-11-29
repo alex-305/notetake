@@ -32,14 +32,20 @@
     }
     
     .noteTitle {
-        border: none;
         font-size: 30px;
-        width: 93.5%;
+        width: 93.1%;
         height: 35px;
         margin-left: 10px;
+        background-color: #9fc4fc;
+        color: #000308;
     }
+
+    .noteTitle::placeholder {
+        color: #000308;
+    }
+
     .noteTitle:focus {
-        border: none;
+        outline: none;
     }
     
     </style>

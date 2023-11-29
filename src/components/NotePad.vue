@@ -25,10 +25,16 @@
         overflow-y: scroll;
         white-space: pre-wrap;
         word-wrap: break-word;
-        color: black;
+        color: #000308;
         font-size: 20px;
         width: 100%;
         height: 100%;
+        background-color: #9fc4fc;
+        outline: none;
+    }
+
+    .noteText::placeholder {
+        color: #000308;
     }
 
 </style>
