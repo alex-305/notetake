@@ -7,14 +7,14 @@
 </template>
 
 <script setup lang="ts">
-import {selectLine, selectWord, saveNote } from './TSFiles/commands'
+import {selectLine, selectWord, saveNote, deleteLine } from './TSFiles/commands'
     const textCommands = (event: KeyboardEvent) => {
         if(event.ctrlKey && event.key.toLowerCase()==='l') {
             event.preventDefault();
             selectLine(event.target as HTMLTextAreaElement);
         }
 
-        if((event.ctrlKey && event.key.toLowerCase()=='s')) {
+        if(event.ctrlKey && event.key.toLowerCase()=='s') {
             event.preventDefault();
             saveNote(event.target as HTMLTextAreaElement);
         }
@@ -22,6 +22,11 @@ import {selectLine, selectWord, saveNote } from './TSFiles/commands'
         if(event.ctrlKey && event.key.toLowerCase()=='d') {
             event.preventDefault();
             selectWord(event.target as HTMLTextAreaElement);
+        }
+        
+        if(event.ctrlKey && event.key.toLowerCase()=='x') {
+            event.preventDefault();
+            deleteLine(event.target as HTMLTextAreaElement);
         }
     }
 
