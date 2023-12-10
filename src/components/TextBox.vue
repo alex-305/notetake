@@ -1,7 +1,6 @@
 <template>
 <div>
     <textarea 
-        @keydown="textCommands"
         v-model="text"
         class="noteText"
         placeholder="Begin writing your notes..."
@@ -10,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import {selectLine, selectWord, saveNote, deleteLine } from './TSFiles/commands'
 
     const props = defineProps({
         text: {
@@ -21,29 +19,6 @@ import {selectLine, selectWord, saveNote, deleteLine } from './TSFiles/commands'
     })
 
     const text = props.text;
-
-    const textCommands = (event: KeyboardEvent) => {
-        if(event.ctrlKey && event.key.toLowerCase()==='l') {
-            event.preventDefault();
-            selectLine(event.target as HTMLTextAreaElement);
-        }
-
-        if(event.ctrlKey && event.key.toLowerCase()=='s') {
-            event.preventDefault();
-            saveNote(event.target as HTMLTextAreaElement);
-        }
-
-        if(event.ctrlKey && event.key.toLowerCase()=='d') {
-            event.preventDefault();
-            selectWord(event.target as HTMLTextAreaElement);
-        }
-        
-        if(event.ctrlKey && event.key.toLowerCase()=='x') {
-            event.preventDefault();
-            deleteLine(event.target as HTMLTextAreaElement);
-        }
-    }
-
 
 </script>
 
@@ -59,10 +34,34 @@ import {selectLine, selectWord, saveNote, deleteLine } from './TSFiles/commands'
         height: 100%;
         background-color: #9fc4fc;
         outline: none;
+        border: none;
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.1);
+        overflow: auto;
+    }
+
+    .noteText::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .noteText::-webkit-scrollbar-track {
+        background: #CFE2FE;
+    }
+    .noteText::-webkit-scrollbar-thumb {
+        background: #637B9E;
+        border-radius: 3px;
+    }   
+
+    .noteText::-webkit-scrollbar-thumb:hover {
+        background: #28313F;
     }
 
     .noteText::placeholder {
         color: #000308;
+    }
+
+    .noteText:focus {
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
     }
 
 </style>

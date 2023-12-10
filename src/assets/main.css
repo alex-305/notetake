@@ -2,16 +2,20 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #bcc6d6;
+    background-color: #C3DAFD;
 }
 
 button {
     cursor: pointer;
     font-weight: bold;
+    background-color: #ABCBFC;
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.backButton {
-    background-color: #b0ffe9;
+button:active {
+    
+    transform: perspective(500px) rotateX(20deg) scale(0.90);
 }
 
 .plusButton {
@@ -20,8 +24,4 @@ button {
 
 .xButton {
     background-color:  #ff7675;
-}
-
-.saveButton {
-    background-color: #91ff85;
 }

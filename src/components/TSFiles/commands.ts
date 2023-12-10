@@ -1,8 +1,31 @@
-export function saveNote (textArea: HTMLTextAreaElement) {
-
+export function ctrlTextCommands (event: KeyboardEvent) {
+    const text = event.target as HTMLTextAreaElement;
+    
+    switch(event.key.toLowerCase()) {
+        case 'l':
+            selectLine(text);
+            break;
+        case 's':
+            saveNote(text);
+            break;
+        case 'd':
+            selectWord(text);
+            break;
+        case 'x':
+            deleteLine(text);
+            break;
+        default:
+            return;
+    }
+    event.preventDefault();
 }
 
-export function selectWord (textArea: HTMLTextAreaElement) {
+function saveNote (textArea: HTMLTextAreaElement) {
+    const content = textArea.value;
+    console.log(content);
+}
+
+function selectWord (textArea: HTMLTextAreaElement) {
     const text = textArea.value
     const beginning = textArea.selectionStart;
     const end = textArea.selectionEnd;
@@ -32,7 +55,7 @@ export function selectWord (textArea: HTMLTextAreaElement) {
     }
 }
 
-export function selectLine (textArea: HTMLTextAreaElement) {
+function selectLine (textArea: HTMLTextAreaElement) {
 //Problems are when trying to select in the middle of last line in text document it goes back to beginning of text
     const text = textArea.value
 
@@ -55,8 +78,6 @@ export function selectLine (textArea: HTMLTextAreaElement) {
                 lineEnd++;
             }
         }
-        console.log("linebeg:"+lineBeginning+"lineend"+lineEnd);
-
     }
     if(lineEnd === -1) {
         lineEnd = text.length;
@@ -66,6 +87,6 @@ export function selectLine (textArea: HTMLTextAreaElement) {
 
 
 
-export function deleteLine(textArea: HTMLTextAreaElement) {
+function deleteLine (textArea: HTMLTextAreaElement) {
 
 }
