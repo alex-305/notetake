@@ -1,17 +1,11 @@
 <template>
-<div class="footer">
-</div>
-
+  <div class="footer"></div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style>
-
 .footer {
-    display: flex;
+  display: flex;
 }
-
 </style>
