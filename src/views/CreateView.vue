@@ -1,9 +1,12 @@
 <template>
-    <NotePad/>  
+  <NotePad/>
 </template>
-    
+
 <script setup lang="ts">
-    import NotePad from '../components/NotePad.vue'
-        
-    
+import { onMounted } from 'vue'
+import NotePad from '../components/NotePad.vue'
+
+onMounted(() => {
+  //(this as any).$refs.NotePad.NoteTitleBar.focus();
+})
 </script>
