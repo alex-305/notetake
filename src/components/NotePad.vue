@@ -28,11 +28,6 @@ const props = defineProps({
 })
 const title = props.title;
 const text = props.text;
-
-// const save = () => {
-//   (this as any).$refs.NoteTitleBar.save()
-//   saveNote
-// }
 </script>
 
 <style>
@@ -48,16 +43,11 @@ const text = props.text;
   font-family: 'JetBrains Mono', monospace;
 }
 
-.notePad *::selection {
-  background-color: #a89ffc;
-}
 
 .textBox {
-    width: 98%;
+    width: 100%;
     height: 500px;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
+    padding-top: 5px;
 }
 
 </style>

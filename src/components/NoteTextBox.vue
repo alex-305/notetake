@@ -2,16 +2,18 @@
   <div class="textBox">
     <LineNumbers 
     :lineNumbers=lineNumbers 
-    :selectionRange="[0,0]"
+    :selectionRange="selectionRange"
     />
     <textarea 
       name="text"
       id="noteContent"
-      class="noteText"
+      class="textArea"
       placeholder="Begin writing your notes..."
+      spellcheck="false"
       @keydown.tab.prevent="insertTabSpaces"
       @input="updateLineNumbers"
       tabindex="2"
+      maxlength="30000"
       ></textarea>
   </div>
 </template>
@@ -31,6 +33,7 @@ const props = defineProps({
 let oldText:string
 
 const lineNumbers = ref(1);
+const selectionRange = ref<number[]>([0,0]);
 
 const updateLineNumbers = (event:Event) => {
   const textArea = event.target as HTMLTextAreaElement;
@@ -81,62 +84,24 @@ export function getContent() {
 <style scoped>
 .textBox {
   height: 100%;
-  width: 96%;
-  border-radius: 5px;
+  width: 98%;
   padding: 5px;
   margin: 5px;
   display: grid;
   grid-template-columns: 5% 95%;
   overflow-y: scroll;
-  overflow-x: hidden;
 }
 
-.noteText {
+.textArea {
   resize: none;
-  overflow-y: hidden;
   overflow-x: scroll;
   white-space: nowrap;
   color: #000308;
   font-size: 20px;
-  width: 100%;
+  width: 95%;
   height: 100%;
-  background-color: #9fc4fc;
   outline: none;
   border: none;
-  box-shadow:
-    0 4px 16px 0 rgba(0, 0, 0, 0.1),
-    0 6px 20px 0 rgba(0, 0, 0, 0.1);
-
-  box-sizing: border-box;
-  padding-top: 5px;
 }
-
-.noteText::placeholder {
-  color: #000308;
-}
-
-.noteText:focus {
-  box-shadow:
-    0 4px 16px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.2);
-}
-
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: none;
-}
-*::-webkit-scrollbar-thumb {
-  background: #637b9e;
-  border-radius: 3px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: #28313f;
-}
-
 
 </style>

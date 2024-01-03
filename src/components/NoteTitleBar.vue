@@ -1,12 +1,14 @@
 <template>
   <div class="noteTitleBar">
     <button class="backButton" @click="$router.push('/')">⮜Back</button>
-    <input name="title"
+    <input 
+    name="title"
     class="noteTitle"
     type="text"
     placeholder="New Note"
     tabindex="1"
     id="noteTitle"
+    maxlength="100"
      />
     <button class="plusButton saveButton" @click="saveNote">{{ saveText }}</button>
   </div>
@@ -47,23 +49,12 @@ export const saveButton = () => {
   font-size: 30px;
   width: 88%;
   height: 35px;
-  background-color: #9fc4fc;
   color: #000308;
   border: none;
-  box-shadow:
-    0 4px 16px 0 rgba(0, 0, 0, 0.1),
-    0 6px 20px 0 rgba(0, 0, 0, 0.1);
-}
-
-.noteTitle::placeholder {
-  color: #000308;
 }
 
 .noteTitle:focus {
   outline: none;
-  box-shadow:
-    0 4px 16px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .noteTitleBar {

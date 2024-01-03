@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class="lineNumbers">
         <div v-for="line in lineNumbers" :key="line">
-            <button 
+            <button
+            @click="selectLine(line)"
             :class="{ active : line >=selectionRange[0] && line <=selectionRange[1]}"
             >{{ line }}</button>
         </div>
@@ -23,6 +24,10 @@ import { toRefs } from 'vue';
         },
     });
     const { lineNumbers, selectionRange } = toRefs(props);
+
+    const selectLine = (id:number) => {
+
+    }
 </script>
 
 
@@ -33,12 +38,13 @@ button {
     padding: 0px;
     width: 95%;
     color: #8e979c;
-    background-color: #c3dafd;
+    background-color: #fafbfc;
     box-shadow: none;
     border-radius: 5px;
-    display: inline-flex;
-    align-items: flex-end;
-    text-align: center;
+}
+
+.lineNumbers {
+    padding: 5px;
 }
 
 .active {

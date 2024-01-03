@@ -2,16 +2,42 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #c3dafd;
-  color: #2d3436;
+  background-color: #fafbfc;
+  color: #000308;
+}
+
+input {
+  background-color: #cae3fc;
+  border-radius: 5px;
+  box-shadow:
+  0 4px 16px 0 rgba(0, 0, 0, 0.1),
+  0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+textarea {
+  background-color: #cae3fc;
+  border-radius: 5px;
+  box-shadow:
+  0 4px 16px 0 rgba(0, 0, 0, 0.1),
+  0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+*:focus {
+  box-shadow:
+  0 4px 16px 0 rgba(0, 0, 0, 0.2),
+  0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
 }
 
 button {
   font-size: 15px;
   cursor: pointer;
   font-weight: bold;
-  background-color: #abcbfc;
+  background-color: #cae3fc;
   border: none;
+  border-radius: 5px;
   box-shadow:
     0 4px 16px 0 rgba(0, 0, 0, 0.1),
     0 6px 20px 0 rgba(0, 0, 0, 0.1);
@@ -41,3 +67,26 @@ button:active:hover {
 .xButton:active:hover {
   background-color: #bd7793;
 }
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 0px;
+}
+
+*::-webkit-scrollbar-track {
+  background: none;
+}
+*::-webkit-scrollbar-thumb {
+  background: #637b9e;
+  border-radius: 3px;
+}
+
+*::selection {
+  background-color: #a89ffc8c;
+}
+
+*::placeholder {
+  color: #0003089e;
+}
+
+
