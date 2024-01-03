@@ -1,4 +1,4 @@
-import { useCreateNoteStore } from "@/stores/CreateNoteStore"
+import { saveNote } from './saveNote'
 export function ctrlTextCommands(event: KeyboardEvent) {
   const text = event.target as HTMLTextAreaElement
 
@@ -15,7 +15,7 @@ export function ctrlTextCommands(event: KeyboardEvent) {
       selectLine(text)
       break
     case 's':
-      saveNote(text)
+      saveNote();
       break
     case 'd':
       selectWord(text)
@@ -24,14 +24,6 @@ export function ctrlTextCommands(event: KeyboardEvent) {
       deleteLine(text)
       break
   }
-}
-
-export function saveNote(textArea: HTMLTextAreaElement) {
-  const createNoteStore = useCreateNoteStore();
-  const content = createNoteStore.getContent();
-  const title = createNoteStore.getTitle();
-
-
 }
 
 function selectWord(textArea: HTMLTextAreaElement) {

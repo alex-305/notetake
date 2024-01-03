@@ -1,16 +1,21 @@
 <template>
   <div class="noteTitleBar">
     <button class="backButton" @click="$router.push('/')">⮜Back</button>
-    <input name="title" v-model="title" class="noteTitle" type="text" placeholder="New Note" tabindex="1" />
-    <button class="plusButton saveButton" @click="save">{{ saveText }}</button>
+    <input name="title"
+    class="noteTitle"
+    type="text"
+    placeholder="New Note"
+    tabindex="1"
+    id="noteTitle"
+     />
+    <button class="plusButton saveButton" @click="saveNote">{{ saveText }}</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useCreateNoteStore } from '@/stores/CreateNoteStore'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
+import { saveNote } from '@/components/TSFiles/saveNote'
 
-const noteStore = useCreateNoteStore()
 const props = defineProps({
   title: {
     type: String,
@@ -19,25 +24,22 @@ const props = defineProps({
   }
 })
 
-const title = ref(props.title);
+</script>
 
-watch(title, (updatedText) => {
-    noteStore.setTitle(updatedText);
-})
-
+<script lang="ts">
+export function getTitle() {
+  return (document.getElementById('noteTitle') as HTMLTextAreaElement | null);
+}
 
 const saveText = ref('Save🖫')
 
-const save = () => {
-  saveButton()
-}
-
-const saveButton = () => {
+export const saveButton = () => {
   saveText.value = 'Saved✔'
   setTimeout(() => {
     saveText.value = 'Save🖫'
   }, 1000)
 }
+
 </script>
 
 <style>
