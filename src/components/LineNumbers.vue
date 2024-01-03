@@ -26,7 +26,7 @@ import { toRefs } from 'vue';
     const { lineNumbers, selectionRange } = toRefs(props);
 
     const selectLine = (id:number) => {
-
+        
     }
 </script>
 
@@ -44,7 +44,7 @@ button {
 }
 
 .lineNumbers {
-    padding: 5px;
+    padding: 2px;
 }
 
 .active {
