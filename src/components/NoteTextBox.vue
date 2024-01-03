@@ -4,24 +4,22 @@
     :lineNumbers=lineNumbers 
     :selectionRange="[0,0]"
     />
-    <textarea name="text"
-      ref="textRef"
-      v-model="text"
+    <textarea 
+      name="text"
+      id="noteContent"
       class="noteText"
       placeholder="Begin writing your notes..."
       @keydown.tab.prevent="insertTabSpaces"
+      @input="updateLineNumbers"
       tabindex="2"
       ></textarea>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useCreateNoteStore } from '@/stores/CreateNoteStore'
 import LineNumbers from './LineNumbers.vue'
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
-//const textRef = ref<HTMLTextAreaElement | null>(null);
-const noteStore = useCreateNoteStore()
 const props = defineProps({
   text: {
     type: String,
@@ -30,16 +28,35 @@ const props = defineProps({
   }
 })
 
+let oldText:string
+
 const lineNumbers = ref(1);
-const text = ref(props.text);
 
-watch(text, (updatedText) => {
-    noteStore.setContent(updatedText);
-    if(lineNumbers.value !== updatedText.split('\n').length) {
-      lineNumbers.value = updatedText.split('\n').length;
+const updateLineNumbers = (event:Event) => {
+  const textArea = event.target as HTMLTextAreaElement;
+  if(textArea) {
+    oldText = oldText ? oldText : "";
+    const textLen = textArea.value.length | 0;
+    const oldLen = oldText.length;
+    const textDifference = textLen - oldLen;
+    const selection = textArea.selectionStart;
+    if(textDifference > 0) { //addition
+      for(let i = textDifference; i > 0; i--) {
+        if(textArea.value[selection-i] === '\n') {
+          lineNumbers.value++;
+        }
+      }
+    } else if(textDifference < 0) { //deletion
+      const positiveTextDiff = textDifference * -1;
+      for(let i = 0; i < positiveTextDiff; i++) {
+        if(oldText[selection+i] === '\n') {
+          lineNumbers.value--;
+        }
+      }
     }
-})
-
+    oldText = textArea.value;
+  }
+}
 
 const insertTabSpaces = (event:KeyboardEvent) => {
   if(event.key==="Tab") {
@@ -54,6 +71,12 @@ const insertTabSpaces = (event:KeyboardEvent) => {
 
 
 </script>
+<script lang="ts">
+export function getContent() {
+  return (document.getElementById('noteContent') as HTMLTextAreaElement | null);
+}
+
+</script>
 
 <style scoped>
 .textBox {
@@ -64,14 +87,15 @@ const insertTabSpaces = (event:KeyboardEvent) => {
   margin: 5px;
   display: grid;
   grid-template-columns: 5% 95%;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .noteText {
   resize: none;
-  overflow: hidden;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
   color: #000308;
   font-size: 20px;
   width: 100%;
@@ -82,6 +106,9 @@ const insertTabSpaces = (event:KeyboardEvent) => {
   box-shadow:
     0 4px 16px 0 rgba(0, 0, 0, 0.1),
     0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+  box-sizing: border-box;
+  padding-top: 5px;
 }
 
 .noteText::placeholder {
@@ -94,20 +121,20 @@ const insertTabSpaces = (event:KeyboardEvent) => {
     0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-.textBox::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-.textBox::-webkit-scrollbar-track {
-  background: #cfe2fe;
+*::-webkit-scrollbar-track {
+  background: none;
 }
-.textBox::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #637b9e;
   border-radius: 3px;
 }
 
-.textBox::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #28313f;
 }
 

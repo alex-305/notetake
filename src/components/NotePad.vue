@@ -12,8 +12,7 @@
 <script setup lang="ts">
 import NoteTextBox from '../components/NoteTextBox.vue'
 import NoteTitleBar from './NoteTitleBar.vue'
-import { ctrlTextCommands, saveNote } from './TSFiles/commands'
-import { onMounted } from 'vue'
+import { ctrlTextCommands } from './TSFiles/commands'
 
 const props = defineProps({
   title: {
@@ -30,10 +29,10 @@ const props = defineProps({
 const title = props.title;
 const text = props.text;
 
-const save = () => {
-  (this as any).$refs.NoteTitleBar.save()
-  saveNote
-}
+// const save = () => {
+//   (this as any).$refs.NoteTitleBar.save()
+//   saveNote
+// }
 </script>
 
 <style>

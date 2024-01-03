@@ -35,6 +35,10 @@ button {
     color: #8e979c;
     background-color: #c3dafd;
     box-shadow: none;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: flex-end;
+    text-align: center;
 }
 
 .active {
